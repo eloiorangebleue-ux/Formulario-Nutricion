@@ -135,7 +135,7 @@ label.option-button:hover {
   box-shadow: 0 6px 14px #a7ffebbb;
 }
 
-input[type=checkbox]:checked+label.option-button {
+input[type=checkbox]:checked + label.option-button {
   background-color: #004d40;
   color: #a7ffeb;
   box-shadow: 0 6px 14px #a7ffebbb;
