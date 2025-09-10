@@ -1,130 +1,475 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Formulario Nutricional Público</title>
-  <!-- Importar fuente Poppins -->
+  <title>🥗 Formulario Nutricional Moderno</title>
+  <!-- Fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* General */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #b2dfdb, #80cbc4);
+      margin: 0;
+      padding: 1rem;
+      color: #263238;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: #ffffffdd;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      user-select: none;
+    }
+
+    header p {
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: #00796b;
+    }
+
+    /* Form labels uniformes */
+    label, legend {
+      display: block;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      user-select: none;
+    }
+
+    /* Inputs homogéneos */
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    input[type=tel],
+    textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1.3rem;
+      font-size: 1rem;
+      border: 2.5px solid #80cbc4;
+      border-radius: 12px;
+      background: #e0f2f1;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      outline-offset: 4px;
+    }
+
+    input[type=text]:focus,
+    input[type=number]:focus,
+    input[type=email]:focus,
+    input[type=tel]:focus,
+    textarea:focus {
+      border-color: #004d40;
+      box-shadow: 0 0 12px #004d40aa;
+      background: #b2dfdb;
+    }
+
+    /* Textarea placeholders */
+    textarea::placeholder {
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Fieldsets */
+    fieldset {
+      border: 2.5px solid #80cbc4;
+      border-radius: 14px;
+      padding: 1rem 1.5rem 2rem;
+      margin-bottom: 2rem;
+      background: #e0f7faaa;
+      transition: background-color 0.3s ease;
+    }
+
+    fieldset:hover {
+      background-color: #b2dfdbcc;
+    }
+
+    legend {
+      font-size: 1.3rem;
+      color: #00796b;
+      margin-bottom: 1rem;
+    }
+
+    /* Botones tipo toggle para opciones */
+    .options-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    input[type=checkbox] {
+      display: none;
+    }
+
+    label.option-button {
+      user-select: none;
+      cursor: pointer;
+      min-width: 100px;
+      padding: 0.6rem 1rem;
+      border-radius: 25px;
+      background: #80cbc4;
+      color: #004d40;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0 4px 8px #004d40aa;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    label.option-button:hover {
+      background-color: #004d40;
+      color: #a7ffeb;
+      box-shadow: 0 6px 14px #a7ffebbb;
+    }
+
+    input[type=checkbox]:checked+label.option-button {
+      background-color: #004d40;
+      color: #a7ffeb;
+      box-shadow: 0 6px 14px #a7ffebbb;
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+
+    /* Botón Enviar */
+    button[type=submit] {
+      margin-top: 0;
+      width: 100%;
+      padding: 1rem 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, #004d40, #00796b);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0, 121, 107, 0.6);
+      transition: background 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    button[type=submit]:hover {
+      background: linear-gradient(135deg, #a7ffeb, #48a999);
+      box-shadow: 0 14px 30px rgba(167, 255, 235, 0.85);
+      color: #004d40;
+    }
+
+    /* Mensaje de confirmación */
+    #confirmation {
+      margin-top: 1rem;
+      font-weight: 700;
+      color: #2e7d32;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      user-select: none;
+    }
+
+    #confirmation.visible {
+      opacity: 1;
+    }
+
+    /* Emoticon dentro botón */
+    label.option-button span.emoji {
+      font-size: 1.3rem;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 650px) {
+      .container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      label.option-button {
+        min-width: 80px;
+        font-size: 0.9rem;
+        padding: 0.5rem 0.8rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="container">
+  <div class="container" role="main" aria-label="Formulario nutricional moderno">
     <header>
       <h1>🥗 Formulario Nutricional</h1>
-      <p>Por favor completa tus preferencias y alergias para crear un plan personalizado.</p>
+      <p>Completa tus preferencias y alergias para crear un plan personalizado.</p>
     </header>
-    <form id="nutrition-form">
+    <form id="nutrition-form" novalidate>
       <label for="nombre">👤 Nombre *</label>
-      <input type="text" id="nombre" name="nombre" required />
+      <input type="text" id="nombre" name="nombre" required autocomplete="given-name" />
 
       <label for="apellido">👥 Apellido *</label>
-      <input type="text" id="apellido" name="apellido" required />
+      <input type="text" id="apellido" name="apellido" required autocomplete="family-name" />
 
       <label for="email">📧 Email *</label>
-      <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com" />
+      <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com" autocomplete="email" />
 
       <label for="telefono">📱 Teléfono *</label>
-      <input type="tel" id="telefono" name="telefono" required placeholder="+34 600 000 000" pattern="^\+?\d{7,15}$" />
+      <input type="tel" id="telefono" name="telefono" required placeholder="+34 600 000 000"
+        pattern="^\+?\d{7,15}$" autocomplete="tel" />
 
       <label for="edad">🎂 Edad *</label>
       <input type="number" id="edad" name="edad" required min="1" max="120" />
 
+      <!-- Alimentos preferidos -->
       <fieldset>
         <legend>🍽️ Alimentos preferidos</legend>
-        <label><input type="checkbox" name="preferidos" value="Pollo" /> 🍗 Pollo</label>
-        <label><input type="checkbox" name="preferidos" value="Pescado" /> 🐟 Pescado</label>
-        <label><input type="checkbox" name="preferidos" value="Carne roja" /> 🥩 Carne roja</label>
-        <label><input type="checkbox" name="preferidos" value="Huevos" /> 🥚 Huevos</label>
-        <label><input type="checkbox" name="preferidos" value="Legumbres" /> 🫘 Legumbres</label>
-        <label><input type="checkbox" name="preferidos" value="Tofu" /> 🍱 Tofu</label>
-        <label><input type="checkbox" name="preferidos" value="Quinoa" /> 🌾 Quinoa</label>
+        <div class="options-group">
+          <input type="checkbox" id="pollo" name="preferidos" value="Pollo" />
+          <label for="pollo" class="option-button"><span class="emoji">🍗</span> Pollo</label>
 
-        <label><input type="checkbox" name="preferidos" value="Arroz" /> 🍚 Arroz</label>
-        <label><input type="checkbox" name="preferidos" value="Pasta" /> 🍝 Pasta</label>
-        <label><input type="checkbox" name="preferidos" value="Pan integral" /> 🍞 Pan integral</label>
-        <label><input type="checkbox" name="preferidos" value="Avena" /> 🌾 Avena</label>
-        <label><input type="checkbox" name="preferidos" value="Patatas" /> 🥔 Patatas</label>
-        <label><input type="checkbox" name="preferidos" value="Frutas" /> 🍎 Frutas</label>
+          <input type="checkbox" id="pescado" name="preferidos" value="Pescado" />
+          <label for="pescado" class="option-button"><span class="emoji">🐟</span> Pescado</label>
 
-        <label><input type="checkbox" name="preferidos" value="Brócoli" /> 🥦 Brócoli</label>
-        <label><input type="checkbox" name="preferidos" value="Espinacas" /> 🌿 Espinacas</label>
-        <label><input type="checkbox" name="preferidos" value="Zanahorias" /> 🥕 Zanahorias</label>
-        <label><input type="checkbox" name="preferidos" value="Tomates" /> 🍅 Tomates</label>
-        <label><input type="checkbox" name="preferidos" value="Pepinos" /> 🥒 Pepinos</label>
-        <label><input type="checkbox" name="preferidos" value="Pimientos" /> 🌶️ Pimientos</label>
+          <input type="checkbox" id="carne_roja" name="preferidos" value="Carne roja" />
+          <label for="carne_roja" class="option-button"><span class="emoji">🥩</span> Carne roja</label>
 
-        <label><input type="checkbox" name="preferidos" value="Leche" /> 🥛 Leche</label>
-        <label><input type="checkbox" name="preferidos" value="Yogur" /> 🥛 Yogur</label>
-        <label><input type="checkbox" name="preferidos" value="Queso" /> 🧀 Queso</label>
-        <label><input type="checkbox" name="preferidos" value="Kéfir" /> 🍶 Kéfir</label>
+          <input type="checkbox" id="huevos" name="preferidos" value="Huevos" />
+          <label for="huevos" class="option-button"><span class="emoji">🥚</span> Huevos</label>
 
-        <label><input type="checkbox" name="preferidos" value="Aguacate" /> 🥑 Aguacate</label>
-        <label><input type="checkbox" name="preferidos" value="Nueces" /> 🌰 Nueces</label>
-        <label><input type="checkbox" name="preferidos" value="Aceite de oliva" /> 🫒 Aceite de oliva</label>
-        <label><input type="checkbox" name="preferidos" value="Semillas" /> 🌻 Semillas</label>
+          <input type="checkbox" id="legumbres" name="preferidos" value="Legumbres" />
+          <label for="legumbres" class="option-button"><span class="emoji">🫘</span> Legumbres</label>
 
-        <label><input type="checkbox" name="preferidos" value="Agua" /> 💧 Agua</label>
-        <label><input type="checkbox" name="preferidos" value="Té" /> 🍵 Té</label>
-        <label><input type="checkbox" name="preferidos" value="Café" /> ☕ Café</label>
-        <label><input type="checkbox" name="preferidos" value="Batidos" /> 🥤 Batidos</label>
+          <input type="checkbox" id="tofu" name="preferidos" value="Tofu" />
+          <label for="tofu" class="option-button"><span class="emoji">🍱</span> Tofu</label>
+
+          <input type="checkbox" id="quinoa" name="preferidos" value="Quinoa" />
+          <label for="quinoa" class="option-button"><span class="emoji">🌾</span> Quinoa</label>
+
+          <input type="checkbox" id="arroz" name="preferidos" value="Arroz" />
+          <label for="arroz" class="option-button"><span class="emoji">🍚</span> Arroz</label>
+
+          <input type="checkbox" id="pasta" name="preferidos" value="Pasta" />
+          <label for="pasta" class="option-button"><span class="emoji">🍝</span> Pasta</label>
+
+          <input type="checkbox" id="pan_integral" name="preferidos" value="Pan integral" />
+          <label for="pan_integral" class="option-button"><span class="emoji">🍞</span> Pan integral</label>
+
+          <input type="checkbox" id="avena" name="preferidos" value="Avena" />
+          <label for="avena" class="option-button"><span class="emoji">🌾</span> Avena</label>
+
+          <input type="checkbox" id="patatas" name="preferidos" value="Patatas" />
+          <label for="patatas" class="option-button"><span class="emoji">🥔</span> Patatas</label>
+
+          <input type="checkbox" id="frutas" name="preferidos" value="Frutas" />
+          <label for="frutas" class="option-button"><span class="emoji">🍎</span> Frutas</label>
+
+          <input type="checkbox" id="brocoli" name="preferidos" value="Brócoli" />
+          <label for="brocoli" class="option-button"><span class="emoji">🥦</span> Brócoli</label>
+
+          <input type="checkbox" id="espinacas" name="preferidos" value="Espinacas" />
+          <label for="espinacas" class="option-button"><span class="emoji">🌿</span> Espinacas</label>
+
+          <input type="checkbox" id="zanahorias" name="preferidos" value="Zanahorias" />
+          <label for="zanahorias" class="option-button"><span class="emoji">🥕</span> Zanahorias</label>
+
+          <input type="checkbox" id="tomates" name="preferidos" value="Tomates" />
+          <label for="tomates" class="option-button"><span class="emoji">🍅</span> Tomates</label>
+
+          <input type="checkbox" id="pepinos" name="preferidos" value="Pepinos" />
+          <label for="pepinos" class="option-button"><span class="emoji">🥒</span> Pepinos</label>
+
+          <input type="checkbox" id="pimientos" name="preferidos" value="Pimientos" />
+          <label for="pimientos" class="option-button"><span class="emoji">🌶️</span> Pimientos</label>
+
+          <input type="checkbox" id="leche" name="preferidos" value="Leche" />
+          <label for="leche" class="option-button"><span class="emoji">🥛</span> Leche</label>
+
+          <input type="checkbox" id="yogur" name="preferidos" value="Yogur" />
+          <label for="yogur" class="option-button"><span class="emoji">🥛</span> Yogur</label>
+
+          <input type="checkbox" id="queso" name="preferidos" value="Queso" />
+          <label for="queso" class="option-button"><span class="emoji">🧀</span> Queso</label>
+
+          <input type="checkbox" id="kefir" name="preferidos" value="Kéfir" />
+          <label for="kefir" class="option-button"><span class="emoji">🍶</span> Kéfir</label>
+
+          <input type="checkbox" id="aguacate" name="preferidos" value="Aguacate" />
+          <label for="aguacate" class="option-button"><span class="emoji">🥑</span> Aguacate</label>
+
+          <input type="checkbox" id="nueces" name="preferidos" value="Nueces" />
+          <label for="nueces" class="option-button"><span class="emoji">🌰</span> Nueces</label>
+
+          <input type="checkbox" id="aceite_oliva" name="preferidos" value="Aceite de oliva" />
+          <label for="aceite_oliva" class="option-button"><span class="emoji">🫒</span> Aceite de oliva</label>
+
+          <input type="checkbox" id="semillas" name="preferidos" value="Semillas" />
+          <label for="semillas" class="option-button"><span class="emoji">🌻</span> Semillas</label>
+
+          <input type="checkbox" id="agua" name="preferidos" value="Agua" />
+          <label for="agua" class="option-button"><span class="emoji">💧</span> Agua</label>
+
+          <input type="checkbox" id="te" name="preferidos" value="Té" />
+          <label for="te" class="option-button"><span class="emoji">🍵</span> Té</label>
+
+          <input type="checkbox" id="cafe" name="preferidos" value="Café" />
+          <label for="cafe" class="option-button"><span class="emoji">☕</span> Café</label>
+
+          <input type="checkbox" id="batidos" name="preferidos" value="Batidos" />
+          <label for="batidos" class="option-button"><span class="emoji">🥤</span> Batidos</label>
+        </div>
       </fieldset>
 
+      <!-- Alimentos que no me gustan -->
       <fieldset>
         <legend>❌ Alimentos que no me gustan</legend>
-        <label><input type="checkbox" name="no_gustan" value="Pollo" /> 🍗 Pollo</label>
-        <label><input type="checkbox" name="no_gustan" value="Pescado" /> 🐟 Pescado</label>
-        <label><input type="checkbox" name="no_gustan" value="Carne roja" /> 🥩 Carne roja</label>
-        <label><input type="checkbox" name="no_gustan" value="Huevos" /> 🥚 Huevos</label>
-        <label><input type="checkbox" name="no_gustan" value="Legumbres" /> 🫘 Legumbres</label>
-        <label><input type="checkbox" name="no_gustan" value="Tofu" /> 🍱 Tofu</label>
-        <label><input type="checkbox" name="no_gustan" value="Quinoa" /> 🌾 Quinoa</label>
+        <div class="options-group">
+          <input type="checkbox" id="ng_pollo" name="no_gustan" value="Pollo" />
+          <label for="ng_pollo" class="option-button"><span class="emoji">🍗</span> Pollo</label>
 
-        <label><input type="checkbox" name="no_gustan" value="Arroz" /> 🍚 Arroz</label>
-        <label><input type="checkbox" name="no_gustan" value="Pasta" /> 🍝 Pasta</label>
-        <label><input type="checkbox" name="no_gustan" value="Pan integral" /> 🍞 Pan integral</label>
-        <label><input type="checkbox" name="no_gustan" value="Avena" /> 🌾 Avena</label>
-        <label><input type="checkbox" name="no_gustan" value="Patatas" /> 🥔 Patatas</label>
-        <label><input type="checkbox" name="no_gustan" value="Frutas" /> 🍎 Frutas</label>
+          <input type="checkbox" id="ng_pescado" name="no_gustan" value="Pescado" />
+          <label for="ng_pescado" class="option-button"><span class="emoji">🐟</span> Pescado</label>
 
-        <label><input type="checkbox" name="no_gustan" value="Brócoli" /> 🥦 Brócoli</label>
-        <label><input type="checkbox" name="no_gustan" value="Espinacas" /> 🌿 Espinacas</label>
-        <label><input type="checkbox" name="no_gustan" value="Zanahorias" /> 🥕 Zanahorias</label>
-        <label><input type="checkbox" name="no_gustan" value="Tomates" /> 🍅 Tomates</label>
-        <label><input type="checkbox" name="no_gustan" value="Pepinos" /> 🥒 Pepinos</label>
-        <label><input type="checkbox" name="no_gustan" value="Pimientos" /> 🌶️ Pimientos</label>
+          <input type="checkbox" id="ng_carne_roja" name="no_gustan" value="Carne roja" />
+          <label for="ng_carne_roja" class="option-button"><span class="emoji">🥩</span> Carne roja</label>
 
-        <label><input type="checkbox" name="no_gustan" value="Leche" /> 🥛 Leche</label>
-        <label><input type="checkbox" name="no_gustan" value="Yogur" /> 🥛 Yogur</label>
-        <label><input type="checkbox" name="no_gustan" value="Queso" /> 🧀 Queso</label>
-        <label><input type="checkbox" name="no_gustan" value="Kéfir" /> 🍶 Kéfir</label>
+          <input type="checkbox" id="ng_huevos" name="no_gustan" value="Huevos" />
+          <label for="ng_huevos" class="option-button"><span class="emoji">🥚</span> Huevos</label>
 
-        <label><input type="checkbox" name="no_gustan" value="Aguacate" /> 🥑 Aguacate</label>
-        <label><input type="checkbox" name="no_gustan" value="Nueces" /> 🌰 Nueces</label>
-        <label><input type="checkbox" name="no_gustan" value="Aceite de oliva" /> 🫒 Aceite de oliva</label>
-        <label><input type="checkbox" name="no_gustan" value="Semillas" /> 🌻 Semillas</label>
+          <input type="checkbox" id="ng_legumbres" name="no_gustan" value="Legumbres" />
+          <label for="ng_legumbres" class="option-button"><span class="emoji">🫘</span> Legumbres</label>
 
-        <label><input type="checkbox" name="no_gustan" value="Agua" /> 💧 Agua</label>
-        <label><input type="checkbox" name="no_gustan" value="Té" /> 🍵 Té</label>
-        <label><input type="checkbox" name="no_gustan" value="Café" /> ☕ Café</label>
-        <label><input type="checkbox" name="no_gustan" value="Batidos" /> 🥤 Batidos</label>
+          <input type="checkbox" id="ng_tofu" name="no_gustan" value="Tofu" />
+          <label for="ng_tofu" class="option-button"><span class="emoji">🍱</span> Tofu</label>
+
+          <input type="checkbox" id="ng_quinoa" name="no_gustan" value="Quinoa" />
+          <label for="ng_quinoa" class="option-button"><span class="emoji">🌾</span> Quinoa</label>
+
+          <input type="checkbox" id="ng_arroz" name="no_gustan" value="Arroz" />
+          <label for="ng_arroz" class="option-button"><span class="emoji">🍚</span> Arroz</label>
+
+          <input type="checkbox" id="ng_pasta" name="no_gustan" value="Pasta" />
+          <label for="ng_pasta" class="option-button"><span class="emoji">🍝</span> Pasta</label>
+
+          <input type="checkbox" id="ng_pan_integral" name="no_gustan" value="Pan integral" />
+          <label for="ng_pan_integral" class="option-button"><span class="emoji">🍞</span> Pan integral</label>
+
+          <input type="checkbox" id="ng_avena" name="no_gustan" value="Avena" />
+          <label for="ng_avena" class="option-button"><span class="emoji">🌾</span> Avena</label>
+
+          <input type="checkbox" id="ng_patatas" name="no_gustan" value="Patatas" />
+          <label for="ng_patatas" class="option-button"><span class="emoji">🥔</span> Patatas</label>
+
+          <input type="checkbox" id="ng_frutas" name="no_gustan" value="Frutas" />
+          <label for="ng_frutas" class="option-button"><span class="emoji">🍎</span> Frutas</label>
+
+          <input type="checkbox" id="ng_brocoli" name="no_gustan" value="Brócoli" />
+          <label for="ng_brocoli" class="option-button"><span class="emoji">🥦</span> Brócoli</label>
+
+          <input type="checkbox" id="ng_espinacas" name="no_gustan" value="Espinacas" />
+          <label for="ng_espinacas" class="option-button"><span class="emoji">🌿</span> Espinacas</label>
+
+          <input type="checkbox" id="ng_zanahorias" name="no_gustan" value="Zanahorias" />
+          <label for="ng_zanahorias" class="option-button"><span class="emoji">🥕</span> Zanahorias</label>
+
+          <input type="checkbox" id="ng_tomates" name="no_gustan" value="Tomates" />
+          <label for="ng_tomates" class="option-button"><span class="emoji">🍅</span> Tomates</label>
+
+          <input type="checkbox" id="ng_pepinos" name="no_gustan" value="Pepinos" />
+          <label for="ng_pepinos" class="option-button"><span class="emoji">🥒</span> Pepinos</label>
+
+          <input type="checkbox" id="ng_pimientos" name="no_gustan" value="Pimientos" />
+          <label for="ng_pimientos" class="option-button"><span class="emoji">🌶️</span> Pimientos</label>
+
+          <input type="checkbox" id="ng_leche" name="no_gustan" value="Leche" />
+          <label for="ng_leche" class="option-button"><span class="emoji">🥛</span> Leche</label>
+
+          <input type="checkbox" id="ng_yogur" name="no_gustan" value="Yogur" />
+          <label for="ng_yogur" class="option-button"><span class="emoji">🥛</span> Yogur</label>
+
+          <input type="checkbox" id="ng_queso" name="no_gustan" value="Queso" />
+          <label for="ng_queso" class="option-button"><span class="emoji">🧀</span> Queso</label>
+
+          <input type="checkbox" id="ng_kefir" name="no_gustan" value="Kéfir" />
+          <label for="ng_kefir" class="option-button"><span class="emoji">🍶</span> Kéfir</label>
+
+          <input type="checkbox" id="ng_aguacate" name="no_gustan" value="Aguacate" />
+          <label for="ng_aguacate" class="option-button"><span class="emoji">🥑</span> Aguacate</label>
+
+          <input type="checkbox" id="ng_nueces" name="no_gustan" value="Nueces" />
+          <label for="ng_nueces" class="option-button"><span class="emoji">🌰</span> Nueces</label>
+
+          <input type="checkbox" id="ng_aceite_oliva" name="no_gustan" value="Aceite de oliva" />
+          <label for="ng_aceite_oliva" class="option-button"><span class="emoji">🫒</span> Aceite de oliva</label>
+
+          <input type="checkbox" id="ng_semillas" name="no_gustan" value="Semillas" />
+          <label for="ng_semillas" class="option-button"><span class="emoji">🌻</span> Semillas</label>
+
+          <input type="checkbox" id="ng_agua" name="no_gustan" value="Agua" />
+          <label for="ng_agua" class="option-button"><span class="emoji">💧</span> Agua</label>
+
+          <input type="checkbox" id="ng_te" name="no_gustan" value="Té" />
+          <label for="ng_te" class="option-button"><span class="emoji">🍵</span> Té</label>
+
+          <input type="checkbox" id="ng_cafe" name="no_gustan" value="Café" />
+          <label for="ng_cafe" class="option-button"><span class="emoji">☕</span> Café</label>
+
+          <input type="checkbox" id="ng_batidos" name="no_gustan" value="Batidos" />
+          <label for="ng_batidos" class="option-button"><span class="emoji">🥤</span> Batidos</label>
+        </div>
       </fieldset>
 
       <fieldset>
         <legend>⚠️ Intolerancias alimentarias</legend>
-        <label><input type="checkbox" name="intolerancias" value="Gluten" /> Gluten</label>
-        <label><input type="checkbox" name="intolerancias" value="Lactosa" /> Lactosa</label>
-        <label><input type="checkbox" name="intolerancias" value="Fructosa" /> Fructosa</label>
-        <label><input type="checkbox" name="intolerancias" value="Otros" /> Otros</label>
+        <div class="options-group">
+          <input type="checkbox" id="int_gluten" name="intolerancias" value="Gluten" />
+          <label for="int_gluten" class="option-button"><span class="emoji">🌾</span> Gluten</label>
+
+          <input type="checkbox" id="int_lactosa" name="intolerancias" value="Lactosa" />
+          <label for="int_lactosa" class="option-button"><span class="emoji">🥛</span> Lactosa</label>
+
+          <input type="checkbox" id="int_fructosa" name="intolerancias" value="Fructosa" />
+          <label for="int_fructosa" class="option-button"><span class="emoji">🍎</span> Fructosa</label>
+
+          <input type="checkbox" id="int_otros" name="intolerancias" value="Otros" />
+          <label for="int_otros" class="option-button"><span class="emoji">❓</span> Otros</label>
+        </div>
         <input type="text" id="otros-intolerancias" name="otros-intolerancias" placeholder="Especifique otros" />
       </fieldset>
 
       <fieldset>
         <legend>🚫 Alergias alimentarias</legend>
-        <label><input type="checkbox" name="alergias" value="Huevos" /> Huevos</label>
-        <label><input type="checkbox" name="alergias" value="Frutos secos" /> Frutos secos</label>
-        <label><input type="checkbox" name="alergias" value="Legumbres" /> Legumbres</label>
-        <label><input type="checkbox" name="alergias" value="Otros" /> Otros</label>
+        <div class="options-group">
+          <input type="checkbox" id="alg_huevos" name="alergias" value="Huevos" />
+          <label for="alg_huevos" class="option-button"><span class="emoji">🥚</span> Huevos</label>
+
+          <input type="checkbox" id="alg_frutos_secos" name="alergias" value="Frutos secos" />
+          <label for="alg_frutos_secos" class="option-button"><span class="emoji">🌰</span> Frutos secos</label>
+
+          <input type="checkbox" id="alg_legumbres" name="alergias" value="Legumbres" />
+          <label for="alg_legumbres" class="option-button"><span class="emoji">🫘</span> Legumbres</label>
+
+          <input type="checkbox" id="alg_otros" name="alergias" value="Otros" />
+          <label for="alg_otros" class="option-button"><span class="emoji">❓</span> Otros</label>
+        </div>
         <input type="text" id="otros-alergias" name="otros-alergias" placeholder="Especifique otros" />
       </fieldset>
 
@@ -132,9 +477,51 @@
       <textarea id="restricciones" name="restricciones" rows="3" placeholder="Por ejemplo: vegetariano, sin gluten..."></textarea>
 
       <button type="submit">Enviar</button>
-      <p id="confirmation" class="hidden">Formulario enviado con éxito. ¡Gracias!</p>
+      <p id="confirmation">¡Formulario enviado con éxito! Gracias.</p>
     </form>
   </div>
-  <script src="app.js"></script>
+
+  <script>
+    const form = document.getElementById('nutrition-form');
+    const confirmation = document.getElementById('confirmation');
+    confirmation.style.opacity = 0;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const data = {
+        nombre: form.nombre.value.trim(),
+        apellido: form.apellido.value.trim(),
+        email: form.email.value.trim(),
+        telefono: form.telefono.value.trim(),
+        edad: form.edad.value.trim(),
+
+        preferidos: [...form.querySelectorAll('input[name="preferidos"]:checked')].map(cb => cb.value),
+        noGustan: [...form.querySelectorAll('input[name="no_gustan"]:checked')].map(cb => cb.value),
+
+        intolerancias: [...form.querySelectorAll('input[name="intolerancias"]:checked')].map(cb => cb.value),
+        otrosIntolerancias: form['otros-intolerancias'].value.trim(),
+
+        alergias: [...form.querySelectorAll('input[name="alergias"]:checked')].map(cb => cb.value),
+        otrosAlergias: form['otros-alergias'].value.trim(),
+
+        restricciones: form.restricciones.value.trim(),
+        fecha: new Date().toISOString()
+      };
+
+      if (data.otrosIntolerancias) data.intolerancias.push(data.otrosIntolerancias);
+      if (data.otrosAlergias) data.alergias.push(data.otrosAlergias);
+
+      console.log('Datos recibidos:', data);
+
+      // Mostrar confirmación animada
+      confirmation.style.opacity = 1;
+      form.reset();
+      setTimeout(() => {
+        confirmation.style.opacity = 0;
+      }, 4000);
+    });
+  </script>
 </body>
+
 </html>
