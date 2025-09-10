@@ -10,11 +10,16 @@ form.addEventListener('submit', function (e) {
     email: form.email.value.trim(),
     telefono: form.telefono.value.trim(),
     edad: form.edad.value.trim(),
-    preferidos: form.preferidos.value.trim(),
+
+    preferidos: [...form.querySelectorAll('input[name="preferidos"]:checked')].map(cb => cb.value),
+    noGustan: [...form.querySelectorAll('input[name="no_gustan"]:checked')].map(cb => cb.value),
+
     intolerancias: [...form.querySelectorAll('input[name="intolerancias"]:checked')].map(cb => cb.value),
     otrosIntolerancias: form['otros-intolerancias'].value.trim(),
+
     alergias: [...form.querySelectorAll('input[name="alergias"]:checked')].map(cb => cb.value),
     otrosAlergias: form['otros-alergias'].value.trim(),
+
     restricciones: form.restricciones.value.trim(),
     fecha: new Date().toISOString()
   };
@@ -22,7 +27,7 @@ form.addEventListener('submit', function (e) {
   if (data.otrosIntolerancias) data.intolerancias.push(data.otrosIntolerancias);
   if (data.otrosAlergias) data.alergias.push(data.otrosAlergias);
 
-  // Aquí podrías enviar los datos a un servidor o guardarlos remotamente
+  // Aquí puedes enviar los datos a un servidor o guardarlos remotamente
 
   console.log('Datos recibidos:', data);
 
