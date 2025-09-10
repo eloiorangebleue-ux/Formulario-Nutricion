@@ -22,4 +22,12 @@ form.addEventListener('submit', function (e) {
   if (data.otrosIntolerancias) data.intolerancias.push(data.otrosIntolerancias);
   if (data.otrosAlergias) data.alergias.push(data.otrosAlergias);
 
-  // Aquí podrías enviar los datos a un servidor o guardarlos remot
+  // Aquí podrías enviar los datos a un servidor o guardarlos remotamente
+
+  console.log('Datos recibidos:', data);
+
+  confirmation.classList.remove('hidden');
+  form.reset();
+
+  setTimeout(() => confirmation.classList.add('hidden'), 5000);
+});
