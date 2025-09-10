@@ -6,6 +6,9 @@ form.addEventListener('submit', function (e) {
 
   const data = {
     nombre: form.nombre.value.trim(),
+    apellido: form.apellido.value.trim(),
+    email: form.email.value.trim(),
+    telefono: form.telefono.value.trim(),
     edad: form.edad.value.trim(),
     preferidos: form.preferidos.value.trim(),
     intolerancias: [...form.querySelectorAll('input[name="intolerancias"]:checked')].map(cb => cb.value),
@@ -19,12 +22,4 @@ form.addEventListener('submit', function (e) {
   if (data.otrosIntolerancias) data.intolerancias.push(data.otrosIntolerancias);
   if (data.otrosAlergias) data.alergias.push(data.otrosAlergias);
 
-  // Aquí puedes enviar los datos a un server o API, o guardarlos en almacenamiento remoto
-
-  console.log('Datos recibidos:', data);
-
-  confirmation.classList.remove('hidden');
-  form.reset();
-
-  setTimeout(() => confirmation.classList.add('hidden'), 5000);
-});
+  // Aquí podrías enviar los datos a un servidor o guardarlos remot
