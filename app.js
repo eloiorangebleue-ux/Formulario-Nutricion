@@ -59,22 +59,32 @@ document.addEventListener('DOMContentLoaded', function () {
       alergias: [...form.querySelectorAll('input[name="alergias"]:checked')].map(cb => cb.value),
       otrosAlergias: form['otros-alergias'].value.trim(),
 
-      restricciones: form.restricciones.value.trim(),
-      fecha: new Date().toISOString(),
+      restricciones: form.restricciones.value.trim()
     };
 
-    if (data.otrosIntolerancias) data.intolerancias.push(data.otrosIntolerancias);
-    if (data.otrosAlergias) data.alergias.push(data.otrosAlergias);
+    const url = 'https://script.google.com/macros/s/AKfycbyRiSWmtTLVSGRaoqK3fPiHLS90jtkoa--9EkPh72jKTUwinTLg0tVamn4yJeyGm7j53A/exec';
 
-    console.log('Datos recibidos:', data);
-
-    confirmation.classList.add('visible');
-    confirmation.style.opacity = 1;
-    form.reset();
-
-    setTimeout(() => {
-      confirmation.classList.remove('visible');
-      confirmation.style.opacity = 0;
-    }, 4000);
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (json.result === 'success') {
+          confirmation.classList.add('visible');
+          confirmation.style.opacity = 1;
+          form.reset();
+          setTimeout(() => {
+            confirmation.classList.remove('visible');
+            confirmation.style.opacity = 0;
+          }, 4000);
+        } else {
+          alert('Error guardando el formulario, intenta más tarde.');
+        }
+      })
+      .catch(error => {
+        alert('Error al conectar con servidor: ' + error.message);
+      });
   });
 });
