@@ -62,4 +62,29 @@ document.addEventListener('DOMContentLoaded', function () {
       restricciones: form.restricciones.value.trim()
     };
 
-    const url = 'https://script.google.com/macros/s/AKfycbyRiSW
+    const url = 'https://script.google.com/macros/s/AKfycbyRiSWmtTLVSGRaoqK3fPiHLS90jtkoa--9EkPh72jKTUwinTLg0tVamn4yJeyGm7j53A/exec';
+
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (json.result === 'success') {
+          confirmation.classList.add('visible');
+          confirmation.style.opacity = 1;
+          form.reset();
+          setTimeout(() => {
+            confirmation.classList.remove('visible');
+            confirmation.style.opacity = 0;
+          }, 4000);
+        } else {
+          alert('Error guardando el formulario, intenta más tarde.');
+        }
+      })
+      .catch(error => {
+        alert('Error al conectar con servidor: ' + error.message);
+      });
+  });
+});
