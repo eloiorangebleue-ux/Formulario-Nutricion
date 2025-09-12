@@ -11,13 +11,14 @@
 
 <body>
   <div class="container" role="main" aria-label="Cuestionario Plan Nutricional Isaac Nutrición">
-   <header>
-  <div class="logo-container">
-    <img src="logo.png" alt="Isaac Nutrición Logo" class="logo" />
-  </div>
-  <h1>Questionario Plan Nutricional</h1>
-  <p>Complete sus preferencias y alergias para personalizar su plan nutricional.</p>
-</header>
+    <header>
+      <div class="logo-container">
+        <img src="logo-isaac-nutricion.png" alt="Isaac Nutrición Logo" class="logo" />
+      </div>
+      <h1>🥗 Cuestionario Plan Nutricional</h1>
+      <p>Complete sus datos para personalizar su plan nutricional.</p>
+    </header>
+
     <form id="nutrition-form"
           action="https://script.google.com/macros/s/AKfycbyRiSWmtTLVSGRaoqK3fPiHLS90jtkoa--9EkPh72jKTUwinTLg0tVamn4yJeyGm7j53A/exec"
           method="POST"
@@ -39,70 +40,29 @@
       <input type="number" id="edad" name="edad" required min="1" max="120" />
 
       <fieldset>
+        <legend>🎯 Objetivo</legend>
+        <div class="options-group">
+          <input type="radio" id="obj_perder" name="objetivo" value="Perder peso" required />
+          <label for="obj_perder" class="option-button">Perder peso</label>
+          <input type="radio" id="obj_mantener" name="objetivo" value="Mantener peso" />
+          <label for="obj_mantener" class="option-button">Mantener peso</label>
+          <input type="radio" id="obj_ganar" name="objetivo" value="Ganar masa muscular" />
+          <label for="obj_ganar" class="option-button">Ganar masa muscular</label>
+          <input type="radio" id="obj_salud" name="objetivo" value="Mejorar salud general" />
+          <label for="obj_salud" class="option-button">Mejorar salud general</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
         <legend>🍽️ Alimentos preferidos</legend>
         <div class="options-group">
           <input type="checkbox" id="pollo" name="preferidos[]" value="Pollo" />
-          <label for="pollo" class="option-button"><span class="emoji">🍗</span> Pollo</label>
+          <label for="pollo" class="option-button">🍗 Pollo</label>
           <input type="checkbox" id="pescado" name="preferidos[]" value="Pescado" />
-          <label for="pescado" class="option-button"><span class="emoji">🐟</span> Pescado</label>
+          <label for="pescado" class="option-button">🐟 Pescado</label>
           <input type="checkbox" id="carne_roja" name="preferidos[]" value="Carne roja" />
-          <label for="carne_roja" class="option-button"><span class="emoji">🥩</span> Carne roja</label>
-          <input type="checkbox" id="huevos" name="preferidos[]" value="Huevos" />
-          <label for="huevos" class="option-button"><span class="emoji">🥚</span> Huevos</label>
-          <input type="checkbox" id="legumbres" name="preferidos[]" value="Legumbres" />
-          <label for="legumbres" class="option-button"><span class="emoji">🫘</span> Legumbres</label>
-          <input type="checkbox" id="tofu" name="preferidos[]" value="Tofu" />
-          <label for="tofu" class="option-button"><span class="emoji">🍱</span> Tofu</label>
-          <input type="checkbox" id="quinoa" name="preferidos[]" value="Quinoa" />
-          <label for="quinoa" class="option-button"><span class="emoji">🌾</span> Quinoa</label>
-          <input type="checkbox" id="arroz" name="preferidos[]" value="Arroz" />
-          <label for="arroz" class="option-button"><span class="emoji">🍚</span> Arroz</label>
-          <input type="checkbox" id="pasta" name="preferidos[]" value="Pasta" />
-          <label for="pasta" class="option-button"><span class="emoji">🍝</span> Pasta</label>
-          <input type="checkbox" id="pan_integral" name="preferidos[]" value="Pan integral" />
-          <label for="pan_integral" class="option-button"><span class="emoji">🍞</span> Pan integral</label>
-          <input type="checkbox" id="avena" name="preferidos[]" value="Avena" />
-          <label for="avena" class="option-button"><span class="emoji">🌾</span> Avena</label>
-          <input type="checkbox" id="patatas" name="preferidos[]" value="Patatas" />
-          <label for="patatas" class="option-button"><span class="emoji">🥔</span> Patatas</label>
-          <input type="checkbox" id="frutas" name="preferidos[]" value="Frutas" />
-          <label for="frutas" class="option-button"><span class="emoji">🍎</span> Frutas</label>
-          <input type="checkbox" id="brocoli" name="preferidos[]" value="Brócoli" />
-          <label for="brocoli" class="option-button"><span class="emoji">🥦</span> Brócoli</label>
-          <input type="checkbox" id="espinacas" name="preferidos[]" value="Espinacas" />
-          <label for="espinacas" class="option-button"><span class="emoji">🌿</span> Espinacas</label>
-          <input type="checkbox" id="zanahorias" name="preferidos[]" value="Zanahorias" />
-          <label for="zanahorias" class="option-button"><span class="emoji">🥕</span> Zanahorias</label>
-          <input type="checkbox" id="tomates" name="preferidos[]" value="Tomates" />
-          <label for="tomates" class="option-button"><span class="emoji">🍅</span> Tomates</label>
-          <input type="checkbox" id="pepinos" name="preferidos[]" value="Pepinos" />
-          <label for="pepinos" class="option-button"><span class="emoji">🥒</span> Pepinos</label>
-          <input type="checkbox" id="pimientos" name="preferidos[]" value="Pimientos" />
-          <label for="pimientos" class="option-button"><span class="emoji">🌶️</span> Pimientos</label>
-          <input type="checkbox" id="leche" name="preferidos[]" value="Leche" />
-          <label for="leche" class="option-button"><span class="emoji">🥛</span> Leche</label>
-          <input type="checkbox" id="yogur" name="preferidos[]" value="Yogur" />
-          <label for="yogur" class="option-button"><span class="emoji">🥛</span> Yogur</label>
-          <input type="checkbox" id="queso" name="preferidos[]" value="Queso" />
-          <label for="queso" class="option-button"><span class="emoji">🧀</span> Queso</label>
-          <input type="checkbox" id="kefir" name="preferidos[]" value="Kéfir" />
-          <label for="kefir" class="option-button"><span class="emoji">🍶</span> Kéfir</label>
-          <input type="checkbox" id="aguacate" name="preferidos[]" value="Aguacate" />
-          <label for="aguacate" class="option-button"><span class="emoji">🥑</span> Aguacate</label>
-          <input type="checkbox" id="nueces" name="preferidos[]" value="Nueces" />
-          <label for="nueces" class="option-button"><span class="emoji">🌰</span> Nueces</label>
-          <input type="checkbox" id="aceite_oliva" name="preferidos[]" value="Aceite de oliva" />
-          <label for="aceite_oliva" class="option-button"><span class="emoji">🫒</span> Aceite de oliva</label>
-          <input type="checkbox" id="semillas" name="preferidos[]" value="Semillas" />
-          <label for="semillas" class="option-button"><span class="emoji">🌻</span> Semillas</label>
-          <input type="checkbox" id="agua" name="preferidos[]" value="Agua" />
-          <label for="agua" class="option-button"><span class="emoji">💧</span> Agua</label>
-          <input type="checkbox" id="te" name="preferidos[]" value="Té" />
-          <label for="te" class="option-button"><span class="emoji">🍵</span> Té</label>
-          <input type="checkbox" id="cafe" name="preferidos[]" value="Café" />
-          <label for="cafe" class="option-button"><span class="emoji">☕</span> Café</label>
-          <input type="checkbox" id="batidos" name="preferidos[]" value="Batidos" />
-          <label for="batidos" class="option-button"><span class="emoji">🥤</span> Batidos</label>
+          <label for="carne_roja" class="option-button">🥩 Carne roja</label>
+          <!-- más opciones... -->
         </div>
       </fieldset>
 
@@ -110,61 +70,32 @@
         <legend>❌ Alimentos que no me gustan</legend>
         <div class="options-group">
           <input type="checkbox" id="ng_pollo" name="noGustan[]" value="Pollo" />
-          <label for="ng_pollo" class="option-button"><span class="emoji">🍗</span> Pollo</label>
+          <label for="ng_pollo" class="option-button">🍗 Pollo</label>
           <input type="checkbox" id="ng_pescado" name="noGustan[]" value="Pescado" />
-          <label for="ng_pescado" class="option-button"><span class="emoji">🐟</span> Pescado</label>
-          <input type="checkbox" id="ng_carne_roja" name="noGustan[]" value="Carne roja" />
-          <label for="ng_carne_roja" class="option-button"><span class="emoji">🥩</span> Carne roja</label>
-          <input type="checkbox" id="ng_huevos" name="noGustan[]" value="Huevos" />
-          <label for="ng_huevos" class="option-button"><span class="emoji">🥚</span> Huevos</label>
-          <input type="checkbox" id="ng_legumbres" name="noGustan[]" value="Legumbres" />
-          <label for="ng_legumbres" class="option-button"><span class="emoji">🫘</span> Legumbres</label>
-          <input type="checkbox" id="ng_tofu" name="noGustan[]" value="Tofu" />
-          <label for="ng_tofu" class="option-button"><span class="emoji">🍱</span> Tofu</label>
-          <input type="checkbox" id="ng_quinoa" name="noGustan[]" value="Quinoa" />
-          <label for="ng_quinoa" class="option-button"><span class="emoji">🌾</span> Quinoa</label>
-          <input type="checkbox" id="ng_arroz" name="noGustan[]" value="Arroz" />
-          <label for="ng_arroz" class="option-button"><span class="emoji">🍚</span> Arroz</label>
-          <input type="checkbox" id="ng_pasta" name="noGustan[]" value="Pasta" />
-          <label for="ng_pasta" class="option-button"><span class="emoji">🍝</span> Pasta</label>
-          <input type="checkbox" id="ng_pan_integral" name="noGustan[]" value="Pan integral" />
-          <label for="ng_pan_integral" class="option-button"><span class="emoji">🍞</span> Pan integral</label>  
-          <!-- Agrega el resto de opciones igual -->  
+          <label for="ng_pescado" class="option-button">🐟 Pescado</label>
+          <!-- más opciones... -->
         </div>
       </fieldset>
 
       <fieldset>
-        <legend>⚠️ Intolerancias alimentarias</legend>
+        <legend>⚠️ Intolerancias y Alergias</legend>
         <div class="options-group">
-          <input type="checkbox" id="int_gluten" name="intolerancias[]" value="Gluten" />
-          <label for="int_gluten" class="option-button"><span class="emoji">🌾</span> Gluten</label>
-          <input type="checkbox" id="int_lactosa" name="intolerancias[]" value="Lactosa" />
-          <label for="int_lactosa" class="option-button"><span class="emoji">🥛</span> Lactosa</label>
-          <input type="checkbox" id="int_fructosa" name="intolerancias[]" value="Fructosa" />
-          <label for="int_fructosa" class="option-button"><span class="emoji">🍎</span> Fructosa</label>
-          <input type="checkbox" id="int_otros" name="intolerancias[]" value="Otros" />
-          <label for="int_otros" class="option-button"><span class="emoji">❓</span> Otros</label>
-        </div>
-        <input type="text" id="otros-intolerancias" name="otrosIntolerancias" placeholder="Especifique otros" />
-      </fieldset>
-
-      <fieldset>
-        <legend>🚫 Alergias alimentarias</legend>
-        <div class="options-group">
+          <input type="checkbox" id="int_gluten" name="intolerencias[]" value="Gluten" />
+          <label for="int_gluten" class="option-button">🌾 Gluten</label>
+          <input type="checkbox" id="int_lactosa" name="intolerencias[]" value="Lactosa" />
+          <label for="int_lactosa" class="option-button">🥛 Lactosa</label>
           <input type="checkbox" id="alg_huevos" name="alergias[]" value="Huevos" />
-          <label for="alg_huevos" class="option-button"><span class="emoji">🥚</span> Huevos</label>
+          <label for="alg_huevos" class="option-button">🥚 Huevos</label>
           <input type="checkbox" id="alg_frutos_secos" name="alergias[]" value="Frutos secos" />
-          <label for="alg_frutos_secos" class="option-button"><span class="emoji">🌰</span> Frutos secos</label>
-          <input type="checkbox" id="alg_legumbres" name="alergias[]" value="Legumbres" />
-          <label for="alg_legumbres" class="option-button"><span class="emoji">🫘</span> Legumbres</label>
-          <input type="checkbox" id="alg_otros" name="alergias[]" value="Otros" />
-          <label for="alg_otros" class="option-button"><span class="emoji">❓</span> Otros</label>
+          <label for="alg_frutos_secos" class="option-button">🌰 Frutos secos</label>
+          <input type="checkbox" id="otros_int_alg" name="otrosIntolerAl" value="Otros" />
+          <label for="otros_int_alg" class="option-button">❓ Otros</label>
         </div>
-        <input type="text" id="otros-alergias" name="otrosAlergias" placeholder="Especifique otros" />
+        <input type="text" id="otros-intoler-alerg" name="otrosIntolerAl" placeholder="Especifique otros" />
       </fieldset>
 
       <label for="restricciones">🥦 Restricciones adicionales</label>
-      <textarea id="restricciones" name="restricciones" rows="3" placeholder="Por ejemplo: vegetariano, sin gluten..."></textarea>
+      <textarea id="restricciones" name="restricciones" rows="3" placeholder="Por ejemplo: vegetariano, sin azúcar..."></textarea>
 
       <button type="submit">Enviar</button>
     </form>
@@ -188,25 +119,19 @@
       const closeButton = document.getElementById('close-success');
 
       form.addEventListener('submit', function(e) {
-        // Validación básica
-        const nombre = form.nombre.value.trim();
-        const apellido = form.apellido.value.trim();
-        const email = form.email.value.trim();
-        const telefono = form.telefono.value.trim();
-        const edad = form.edad.value.trim();
-
-        if (!nombre || !apellido || !email || !telefono || !edad) {
-          alert('Por favor complete todos los campos obligatorios (*)');
-          e.preventDefault();
-          return;
+        const required = ['nombre','apellido','email','telefono','edad','objetivo'];
+        for (let field of required) {
+          if (!form[field].value.trim()) {
+            alert('Por favor complete todos los campos obligatorios (*)');
+            e.preventDefault();
+            return;
+          }
         }
-
-        // Mostrar mensaje de éxito después de breve retraso
         setTimeout(function() {
           successMessage.classList.remove('hidden');
           successMessage.classList.add('visible');
           form.reset();
-        }, 1000);
+        }, 500);
       });
 
       closeButton.addEventListener('click', function() {
