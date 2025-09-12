@@ -13,7 +13,7 @@
   <div class="container" role="main" aria-label="Cuestionario Plan Nutricional Isaac Nutrición">
     <header>
       <div class="logo-container">
-        <img src="logo.png" alt="Isaac Nutrición Logo" class="logo" />
+        <img src="logo-isaac-nutricion.png" alt="Isaac Nutrición Logo" class="logo" />
       </div>
       <p class="subheader">No es una dieta, es tu estilo de vida</p>
       <h1>🥗 Cuestionario Plan Nutricional</h1>
@@ -21,9 +21,9 @@
     </header>
 
     <form id="nutrition-form"
-          action="https://script.google.com/macros/s/AKfycbyRiSWmtTLVSGRaoqK3fPiHLS90jtkoa--9EkPh72jKTUwinTLg0tVamn4yJeyGm7j53A/exec"
-          method="POST"
-          target="hidden_iframe">
+      action="https://script.google.com/macros/s/AKfycbyRiSWmtTLVSGRaoqK3fPiHLS90jtkoa--9EkPh72jKTUwinTLg0tVamn4yJeyGm7j53A/exec"
+      method="POST"
+      target="hidden_iframe">
 
       <label for="nombre">👤 Nombre *</label>
       <input type="text" id="nombre" name="nombre" required autocomplete="given-name" />
@@ -57,7 +57,6 @@
       <fieldset>
         <legend>🍽️ Alimentos preferidos</legend>
         <div class="options-group">
-          <!-- Añade todas las opciones completas aquí como se ven en respuestas anteriores -->
           <input type="checkbox" id="pollo" name="preferidos[]" value="Pollo" />
           <label for="pollo" class="option-button">🍗 Pollo</label>
           <input type="checkbox" id="pescado" name="preferidos[]" value="Pescado" />
@@ -160,7 +159,7 @@
       </fieldset>
 
       <fieldset>
-        <legend>⚠️ Intolerancias y Alergias</legend>
+        <legend>⚠️ Intolerancias y alergias</legend>
         <div class="options-group">
           <input type="checkbox" id="int_gluten" name="intolerancias[]" value="Gluten" />
           <label for="int_gluten" class="option-button">🌾 Gluten</label>
@@ -184,7 +183,8 @@
       <textarea id="restricciones" name="restricciones" rows="3" placeholder="Por ejemplo: vegetariano, sin azúcar..."></textarea>
 
       <button type="submit">Enviar</button>
-    <form id="nutrition-form" action="https://script.google.com/macros/s/AKfycbyRiSWmtTLVSGRaoqK3fPiHLS90jtkoa--9EkPh72jKTUwinTLg0tVamn4yJeyGm7j53A/exec" method="POST" target="hidden_iframe">
+    </form>
+
     <iframe name="hidden_iframe" style="display:none;"></iframe>
 
     <div id="success-message" class="success-popup hidden">
