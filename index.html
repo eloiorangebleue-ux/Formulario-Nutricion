@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,8 +13,9 @@
   <div class="container" role="main" aria-label="Cuestionario Plan Nutricional Isaac Nutrición">
     <header>
       <div class="logo-container">
-        <img src="logo.png" alt="Isaac Nutrición Logo" class="logo" />
+        <img src="logo-isaac-nutricion.png" alt="Isaac Nutrición Logo" class="logo" />
       </div>
+      <p class="subheader">No es una dieta, es tu estilo de vida</p>
       <h1>🥗 Cuestionario Plan Nutricional</h1>
       <p>Complete sus datos para personalizar su plan nutricional.</p>
     </header>
@@ -55,6 +57,7 @@
       <fieldset>
         <legend>🍽️ Alimentos preferidos</legend>
         <div class="options-group">
+          <!-- Añade todas las opciones completas aquí como se ven en respuestas anteriores -->
           <input type="checkbox" id="pollo" name="preferidos[]" value="Pollo" />
           <label for="pollo" class="option-button">🍗 Pollo</label>
           <input type="checkbox" id="pescado" name="preferidos[]" value="Pescado" />
@@ -157,7 +160,7 @@
       </fieldset>
 
       <fieldset>
-        <legend>⚠️ Intolerancias</legend>
+        <legend>⚠️ Intolerancias y Alergias</legend>
         <div class="options-group">
           <input type="checkbox" id="int_gluten" name="intolerancias[]" value="Gluten" />
           <label for="int_gluten" class="option-button">🌾 Gluten</label>
@@ -165,25 +168,16 @@
           <label for="int_lactosa" class="option-button">🥛 Lactosa</label>
           <input type="checkbox" id="int_fructosa" name="intolerancias[]" value="Fructosa" />
           <label for="int_fructosa" class="option-button">🍎 Fructosa</label>
-          <input type="checkbox" id="int_otros" name="intolerancias[]" value="Otros" />
-          <label for="int_otros" class="option-button">❓ Otros</label>
-        </div>
-        <input type="text" id="otros-intolerancias" name="otrosIntolerancias" placeholder="Especifique otros" />
-      </fieldset>
-
-      <fieldset>
-        <legend>🚫 Alergias</legend>
-        <div class="options-group">
           <input type="checkbox" id="alg_huevos" name="alergias[]" value="Huevos" />
           <label for="alg_huevos" class="option-button">🥚 Huevos</label>
           <input type="checkbox" id="alg_frutos_secos" name="alergias[]" value="Frutos secos" />
           <label for="alg_frutos_secos" class="option-button">🌰 Frutos secos</label>
           <input type="checkbox" id="alg_legumbres" name="alergias[]" value="Legumbres" />
           <label for="alg_legumbres" class="option-button">🫘 Legumbres</label>
-          <input type="checkbox" id="alg_otros" name="alergias[]" value="Otros" />
-          <label for="alg_otros" class="option-button">❓ Otros</label>
+          <input type="checkbox" id="otros_int_alg" name="otrosIntolerAl" value="Otros" />
+          <label for="otros_int_alg" class="option-button">❓ Otros</label>
         </div>
-        <input type="text" id="otros-alergias" name="otrosAlergias" placeholder="Especifique otros" />
+        <input type="text" id="otros-intoler-alerg" name="otrosIntolerAl" placeholder="Especifique otros" />
       </fieldset>
 
       <label for="restricciones">🥦 Restricciones adicionales</label>
