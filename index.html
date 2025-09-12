@@ -13,7 +13,7 @@
   <div class="container" role="main" aria-label="Cuestionario Plan Nutricional Isaac Nutrición">
     <header>
       <div class="logo-container">
-        <img src="logo.png" alt="Isaac Nutrición Logo" class="logo" />
+        <img src="logo-isaac-nutricion.png" alt="Isaac Nutrición Logo" class="logo" />
       </div>
       <h1>🥗 Cuestionario Plan Nutricional</h1>
       <p>Complete sus datos para personalizar su plan nutricional.</p>
@@ -92,6 +92,16 @@
           <label for="aceite" class="option-button">🫒 Aceite</label>
           <input type="checkbox" id="agua" name="preferidos[]" value="Agua" />
           <label for="agua" class="option-button">💧 Agua</label>
+          <input type="checkbox" id="chocolate" name="preferidos[]" value="Chocolate" />
+          <label for="chocolate" class="option-button">🍫 Chocolate</label>
+          <input type="checkbox" id="cafe" name="preferidos[]" value="Café" />
+          <label for="cafe" class="option-button">☕ Café</label>
+          <input type="checkbox" id="te" name="preferidos[]" value="Té" />
+          <label for="te" class="option-button">🍵 Té</label>
+          <input type="checkbox" id="yogur" name="preferidos[]" value="Yogur" />
+          <label for="yogur" class="option-button">🥛 Yogur</label>
+          <input type="checkbox" id="queso" name="preferidos[]" value="Queso" />
+          <label for="queso" class="option-button">🧀 Queso</label>
         </div>
       </fieldset>
 
@@ -134,7 +144,47 @@
           <label for="ng_aceite" class="option-button">🫒 Aceite</label>
           <input type="checkbox" id="ng_agua" name="noGustan[]" value="Agua" />
           <label for="ng_agua" class="option-button">💧 Agua</label>
+          <input type="checkbox" id="ng_chocolate" name="noGustan[]" value="Chocolate" />
+          <label for="ng_chocolate" class="option-button">🍫 Chocolate</label>
+          <input type="checkbox" id="ng_cafe" name="noGustan[]" value="Café" />
+          <label for="ng_cafe" class="option-button">☕ Café</label>
+          <input type="checkbox" id="ng_te" name="noGustan[]" value="Té" />
+          <label for="ng_te" class="option-button">🍵 Té</label>
+          <input type="checkbox" id="ng_yogur" name="noGustan[]" value="Yogur" />
+          <label for="ng_yogur" class="option-button">🥛 Yogur</label>
+          <input type="checkbox" id="ng_queso" name="noGustan[]" value="Queso" />
+          <label for="ng_queso" class="option-button">🧀 Queso</label>
         </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>⚠️ Intolerancias</legend>
+        <div class="options-group">
+          <input type="checkbox" id="int_gluten" name="intolerancias[]" value="Gluten" />
+          <label for="int_gluten" class="option-button">🌾 Gluten</label>
+          <input type="checkbox" id="int_lactosa" name="intolerancias[]" value="Lactosa" />
+          <label for="int_lactosa" class="option-button">🥛 Lactosa</label>
+          <input type="checkbox" id="int_fructosa" name="intolerancias[]" value="Fructosa" />
+          <label for="int_fructosa" class="option-button">🍎 Fructosa</label>
+          <input type="checkbox" id="int_otros" name="intolerancias[]" value="Otros" />
+          <label for="int_otros" class="option-button">❓ Otros</label>
+        </div>
+        <input type="text" id="otros-intolerancias" name="otrosIntolerancias" placeholder="Especifique otros" />
+      </fieldset>
+
+      <fieldset>
+        <legend>🚫 Alergias</legend>
+        <div class="options-group">
+          <input type="checkbox" id="alg_huevos" name="alergias[]" value="Huevos" />
+          <label for="alg_huevos" class="option-button">🥚 Huevos</label>
+          <input type="checkbox" id="alg_frutos_secos" name="alergias[]" value="Frutos secos" />
+          <label for="alg_frutos_secos" class="option-button">🌰 Frutos secos</label>
+          <input type="checkbox" id="alg_legumbres" name="alergias[]" value="Legumbres" />
+          <label for="alg_legumbres" class="option-button">🫘 Legumbres</label>
+          <input type="checkbox" id="alg_otros" name="alergias[]" value="Otros" />
+          <label for="alg_otros" class="option-button">❓ Otros</label>
+        </div>
+        <input type="text" id="otros-alergias" name="otrosAlergias" placeholder="Especifique otros" />
       </fieldset>
 
       <label for="restricciones">🥦 Restricciones adicionales</label>
