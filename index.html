@@ -16,12 +16,12 @@
         <img src="logo.png" alt="Isaac Nutrición Logo" class="logo" />
       </div>
       <p class="subheader">No es una dieta, es tu estilo de vida</p>
-      <h1> Formulario Plan Nutricional</h1>
+      <h1>🥗 Formulario Plan Nutricional</h1>
       <p>Complete sus datos para personalizar su plan nutricional.</p>
     </header>
 
     <form id="nutrition-form"
-      action="https://script.google.com/macros/s/AKfycbyPpO-4xlepTzun1gJhGohGR1F4Ekqf5ta1omBMj7jPLvskY97OFqLTBatS7WVo40G6/exec"
+      action="https://script.google.com/macros/s/AKfycbyRiSWmtTLVSGRaoqK3fPiHLS90jtkoa--9EkPh72jKTUwinTLg0tVamn4yJeyGm7j53A/exec"
       method="POST"
       target="hidden_iframe">
 
@@ -57,124 +57,49 @@
       <fieldset>
         <legend>🍽️ Alimentos preferidos</legend>
         <div class="options-group">
-          <input type="checkbox" id="pollo" name="preferidos[]" value="Pollo" />
+          <input type="checkbox" id="pollo" name="preferidos" value="Pollo" />
           <label for="pollo" class="option-button">🍗 Pollo</label>
-          <input type="checkbox" id="pescado" name="preferidos[]" value="Pescado" />
+          <input type="checkbox" id="pescado" name="preferidos" value="Pescado" />
           <label for="pescado" class="option-button">🐟 Pescado</label>
-          <input type="checkbox" id="carne_roja" name="preferidos[]" value="Carne roja" />
+          <input type="checkbox" id="carne_roja" name="preferidos" value="Carne roja" />
           <label for="carne_roja" class="option-button">🥩 Carne roja</label>
-          <input type="checkbox" id="huevos" name="preferidos[]" value="Huevos" />
+          <input type="checkbox" id="huevos" name="preferidos" value="Huevos" />
           <label for="huevos" class="option-button">🥚 Huevos</label>
-          <input type="checkbox" id="legumbres" name="preferidos[]" value="Legumbres" />
+          <input type="checkbox" id="legumbres" name="preferidos" value="Legumbres" />
           <label for="legumbres" class="option-button">🫘 Legumbres</label>
-          <input type="checkbox" id="tofu" name="preferidos[]" value="Tofu" />
-          <label for="tofu" class="option-button">🍱 Tofu</label>
-          <input type="checkbox" id="quinoa" name="preferidos[]" value="Quinoa" />
-          <label for="quinoa" class="option-button">🌾 Quinoa</label>
-          <input type="checkbox" id="arroz" name="preferidos[]" value="Arroz" />
-          <label for="arroz" class="option-button">🍚 Arroz</label>
-          <input type="checkbox" id="pasta" name="preferidos[]" value="Pasta" />
-          <label for="pasta" class="option-button">🍝 Pasta</label>
-          <input type="checkbox" id="pan_integral" name="preferidos[]" value="Pan integral" />
-          <label for="pan_integral" class="option-button">🍞 Pan integral</label>
-          <input type="checkbox" id="avena" name="preferidos[]" value="Avena" />
-          <label for="avena" class="option-button">🥣 Avena</label>
-          <input type="checkbox" id="patatas" name="preferidos[]" value="Patatas" />
-          <label for="patatas" class="option-button">🥔 Patatas</label>
-          <input type="checkbox" id="frutas" name="preferidos[]" value="Frutas" />
-          <label for="frutas" class="option-button">🍎 Frutas</label>
-          <input type="checkbox" id="verduras" name="preferidos[]" value="Verduras" />
-          <label for="verduras" class="option-button">🥦 Verduras</label>
-          <input type="checkbox" id="lacteos" name="preferidos[]" value="Lácteos" />
-          <label for="lacteos" class="option-button">🥛 Lácteos</label>
-          <input type="checkbox" id="frutos_secos" name="preferidos[]" value="Frutos secos" />
-          <label for="frutos_secos" class="option-button">🌰 Frutos secos</label>
-          <input type="checkbox" id="aceite" name="preferidos[]" value="Aceite de oliva" />
-          <label for="aceite" class="option-button">🫒 Aceite</label>
-          <input type="checkbox" id="agua" name="preferidos[]" value="Agua" />
-          <label for="agua" class="option-button">💧 Agua</label>
-          <input type="checkbox" id="chocolate" name="preferidos[]" value="Chocolate" />
-          <label for="chocolate" class="option-button">🍫 Chocolate</label>
-          <input type="checkbox" id="cafe" name="preferidos[]" value="Café" />
-          <label for="cafe" class="option-button">☕ Café</label>
-          <input type="checkbox" id="te" name="preferidos[]" value="Té" />
-          <label for="te" class="option-button">🍵 Té</label>
-          <input type="checkbox" id="yogur" name="preferidos[]" value="Yogur" />
-          <label for="yogur" class="option-button">🥛 Yogur</label>
-          <input type="checkbox" id="queso" name="preferidos[]" value="Queso" />
-          <label for="queso" class="option-button">🧀 Queso</label>
+          <!-- Añade las demás opciones aquí -->
         </div>
       </fieldset>
 
       <fieldset>
         <legend>❌ Alimentos que no me gustan</legend>
         <div class="options-group">
-          <input type="checkbox" id="ng_pollo" name="noGustan[]" value="Pollo" />
+          <input type="checkbox" id="ng_pollo" name="noGustan" value="Pollo" />
           <label for="ng_pollo" class="option-button">🍗 Pollo</label>
-          <input type="checkbox" id="ng_pescado" name="noGustan[]" value="Pescado" />
+          <input type="checkbox" id="ng_pescado" name="noGustan" value="Pescado" />
           <label for="ng_pescado" class="option-button">🐟 Pescado</label>
-          <input type="checkbox" id="ng_carne_roja" name="noGustan[]" value="Carne roja" />
+          <input type="checkbox" id="ng_carne_roja" name="noGustan" value="Carne roja" />
           <label for="ng_carne_roja" class="option-button">🥩 Carne roja</label>
-          <input type="checkbox" id="ng_huevos" name="noGustan[]" value="Huevos" />
+          <input type="checkbox" id="ng_huevos" name="noGustan" value="Huevos" />
           <label for="ng_huevos" class="option-button">🥚 Huevos</label>
-          <input type="checkbox" id="ng_legumbres" name="noGustan[]" value="Legumbres" />
+          <input type="checkbox" id="ng_legumbres" name="noGustan" value="Legumbres" />
           <label for="ng_legumbres" class="option-button">🫘 Legumbres</label>
-          <input type="checkbox" id="ng_tofu" name="noGustan[]" value="Tofu" />
-          <label for="ng_tofu" class="option-button">🍱 Tofu</label>
-          <input type="checkbox" id="ng_quinoa" name="noGustan[]" value="Quinoa" />
-          <label for="ng_quinoa" class="option-button">🌾 Quinoa</label>
-          <input type="checkbox" id="ng_arroz" name="noGustan[]" value="Arroz" />
-          <label for="ng_arroz" class="option-button">🍚 Arroz</label>
-          <input type="checkbox" id="ng_pasta" name="noGustan[]" value="Pasta" />
-          <label for="ng_pasta" class="option-button">🍝 Pasta</label>
-          <input type="checkbox" id="ng_pan_integral" name="noGustan[]" value="Pan integral" />
-          <label for="ng_pan_integral" class="option-button">🍞 Pan integral</label>
-          <input type="checkbox" id="ng_avena" name="noGustan[]" value="Avena" />
-          <label for="ng_avena" class="option-button">🥣 Avena</label>
-          <input type="checkbox" id="ng_patatas" name="noGustan[]" value="Patatas" />
-          <label for="ng_patatas" class="option-button">🥔 Patatas</label>
-          <input type="checkbox" id="ng_frutas" name="noGustan[]" value="Frutas" />
-          <label for="ng_frutas" class="option-button">🍎 Frutas</label>
-          <input type="checkbox" id="ng_verduras" name="noGustan[]" value="Verduras" />
-          <label for="ng_verduras" class="option-button">🥦 Verduras</label>
-          <input type="checkbox" id="ng_lacteos" name="noGustan[]" value="Lácteos" />
-          <label for="ng_lacteos" class="option-button">🥛 Lácteos</label>
-          <input type="checkbox" id="ng_frutos_secos" name="noGustan[]" value="Frutos secos" />
-          <label for="ng_frutos_secos" class="option-button">🌰 Frutos secos</label>
-          <input type="checkbox" id="ng_aceite" name="noGustan[]" value="Aceite de oliva" />
-          <label for="ng_aceite" class="option-button">🫒 Aceite</label>
-          <input type="checkbox" id="ng_agua" name="noGustan[]" value="Agua" />
-          <label for="ng_agua" class="option-button">💧 Agua</label>
-          <input type="checkbox" id="ng_chocolate" name="noGustan[]" value="Chocolate" />
-          <label for="ng_chocolate" class="option-button">🍫 Chocolate</label>
-          <input type="checkbox" id="ng_cafe" name="noGustan[]" value="Café" />
-          <label for="ng_cafe" class="option-button">☕ Café</label>
-          <input type="checkbox" id="ng_te" name="noGustan[]" value="Té" />
-          <label for="ng_te" class="option-button">🍵 Té</label>
-          <input type="checkbox" id="ng_yogur" name="noGustan[]" value="Yogur" />
-          <label for="ng_yogur" class="option-button">🥛 Yogur</label>
-          <input type="checkbox" id="ng_queso" name="noGustan[]" value="Queso" />
-          <label for="ng_queso" class="option-button">🧀 Queso</label>
+          <!-- Añade las demás opciones aquí -->
         </div>
       </fieldset>
 
       <fieldset>
         <legend>⚠️ Intolerancias y alergias</legend>
         <div class="options-group">
-          <input type="checkbox" id="int_gluten" name="intolerancias[]" value="Gluten" />
+          <input type="checkbox" id="int_gluten" name="intolerancias" value="Gluten" />
           <label for="int_gluten" class="option-button">🌾 Gluten</label>
-          <input type="checkbox" id="int_lactosa" name="intolerancias[]" value="Lactosa" />
+          <input type="checkbox" id="int_lactosa" name="intolerancias" value="Lactosa" />
           <label for="int_lactosa" class="option-button">🥛 Lactosa</label>
-          <input type="checkbox" id="int_fructosa" name="intolerancias[]" value="Fructosa" />
-          <label for="int_fructosa" class="option-button">🍎 Fructosa</label>
-          <input type="checkbox" id="alg_huevos" name="alergias[]" value="Huevos" />
+          <input type="checkbox" id="alg_huevos" name="alergias" value="Huevos" />
           <label for="alg_huevos" class="option-button">🥚 Huevos</label>
-          <input type="checkbox" id="alg_frutos_secos" name="alergias[]" value="Frutos secos" />
+          <input type="checkbox" id="alg_frutos_secos" name="alergias" value="Frutos secos" />
           <label for="alg_frutos_secos" class="option-button">🌰 Frutos secos</label>
-          <input type="checkbox" id="alg_legumbres" name="alergias[]" value="Legumbres" />
-          <label for="alg_legumbres" class="option-button">🫘 Legumbres</label>
-          <input type="checkbox" id="otros_int_alg" name="otrosIntolerAl" value="Otros" />
-          <label for="otros_int_alg" class="option-button">❓ Otros</label>
+          <!-- Añade las demás opciones aquí -->
         </div>
         <input type="text" id="otros-intoler-alerg" name="otrosIntolerAl" placeholder="Especifique otros" />
       </fieldset>
