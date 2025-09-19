@@ -1,85 +1,73 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('nutrition-form');
-  const confirmation = document.getElementById('confirmation');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    let errores = [];
-    const nombre = form.nombre.value.trim();
-    const apellido = form.apellido.value.trim();
-    const email = form.email.value.trim();
-    const telefono = form.telefono.value.trim();
-    const edad = form.edad.value.trim();
-    const estatura = form.estatura.value.trim();
-
-    if (!nombre) errores.push('Nombre');
-    if (!apellido) errores.push('Apellido');
-    if (!email) {
-      errores.push('Email');
+function doPost(e) {
+  try {
+    var hoja = SpreadsheetApp.openById('1oo3HMvcl6lDyW5a1mzSbAXZX6R8p3BKpo29WXpPCGWc').getSheetByName('Respuestas');
+    var datos;
+    if (e.postData && e.postData.contents) {
+      try {
+        datos = JSON.parse(e.postData.contents);
+      } catch (err) {
+        return ContentService.createTextOutput(JSON.stringify({ result: "error", error: "Formato de datos inválido" }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
     } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) errores.push('Email (formato inválido)');
-    }
-    if (!telefono) {
-      errores.push('Teléfono');
-    } else {
-      const telRegex = /^\+?\d{7,15}$/;
-      if (!telRegex.test(telefono)) errores.push('Teléfono (formato inválido)');
-    }
-    if (!edad) {
-      errores.push('Edad');
-    } else {
-      const edadNum = parseInt(edad, 10);
-      if (isNaN(edadNum) || edadNum < 1 || edadNum > 120)
-        errores.push('Edad (debe ser un número entre 1 y 120)');
-    }
-    if (!estatura) {
-      errores.push('Estatura');
-    } else {
-      const estaturaNum = parseInt(estatura, 10);
-      if (isNaN(estaturaNum) || estaturaNum < 50 || estaturaNum > 280)
-        errores.push('Estatura (debe ser un número entre 50 y 280)');
-    }
-    if (errores.length > 0) {
-      alert('Por favor complete o corrija los siguientes campos obligatorios:\n- ' + errores.join('\n- '));
-      return;
+      // Manejo tradicional para envío tipo formulario
+      datos = e.parameter;
     }
 
-    const data = {
-      nombre,
-      apellido,
-      email,
-      telefono,
-      edad,
-      estatura,
-      preferidos: [...form.querySelectorAll('input[name="preferidos"]:checked')].map(cb => cb.value),
-      noGustan: [...form.querySelectorAll('input[name="noGustan"]:checked')].map(cb => cb.value),
-      intolerancias: [...form.querySelectorAll('input[name="intolerancias"]:checked')].map(cb => cb.value),
-      alergias: [...form.querySelectorAll('input[name="alergias"]:checked')].map(cb => cb.value),
-      otrosIntolerAl: form['otrosIntolerAl'] ? form['otrosIntolerAl'].value.trim() : '',
-      restricciones: form.restricciones.value.trim()
-    };
-    const url = 'https://script.google.com/macros/s/AKfycbyRiSWmtTLVSGRaoqK3fPiHLS90jtkoa--9EkPh72jKTUwinTLg0tVamn4yJeyGm7j53A/exec';
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' }
-    })
-      .then(response => response.json())
-      .then(json => {
-        if (json.result === 'success') {
-          confirmation.classList.add('visible');
-          confirmation.style.opacity = 1;
-          form.reset();
-          setTimeout(() => {
-            confirmation.classList.remove('visible');
-            confirmation.style.opacity = 0;
-          }, 4000);
-        } else {
-          alert('Error guardando el formulario, intenta más tarde.');
-        }
-      })
-      .catch(error => {
-        alert('Error al conectar con servidor: ' + error.message);
-      });
-  });
-});
+    // Encabezados automáticos si no existen
+    if (hoja.getLastRow() === 0) {
+      hoja.appendRow([
+        'Fecha',
+        'Nombre',
+        'Apellido',
+        'Email',
+        'Teléfono',
+        'Edad',
+        'Estatura (cm)',
+        'Objetivo',
+        'Alimentos preferidos',
+        'Alimentos que no me gustan',
+        'Intolerancias y alergias',
+        'Observaciones'
+      ]);
+    }
+
+    // Combinar intolerancias y alergias (arrays y string posibles)
+    function arr(key) {
+      return Array.isArray(datos[key])
+        ? datos[key].join(', ')
+        : (typeof datos[key] === 'string' ? datos[key] : '');
+    }
+    var intolerAl = [];
+    if (Array.isArray(datos['intolerancias'])) intolerAl = intolerAl.concat(datos['intolerancias']);
+    else if (datos['intolerancias']) intolerAl.push(datos['intolerancias']);
+    if (Array.isArray(datos['alergias'])) intolerAl = intolerAl.concat(datos['alergias']);
+    else if (datos['alergias']) intolerAl.push(datos['alergias']);
+    if (datos['otrosIntolerAl']) intolerAl.push(datos['otrosIntolerAl']);
+    var intolerAlStr = intolerAl.join(', ');
+
+    hoja.appendRow([
+      new Date(),
+      datos.nombre || '',
+      datos.apellido || '',
+      datos.email || '',
+      datos.telefono || '',
+      datos.edad || '',
+      datos.estatura || '',
+      datos.objetivo || '',
+      arr('preferidos'),
+      arr('noGustan'),
+      intolerAlStr,
+      datos.restricciones || ''
+    ]);
+
+    return ContentService.createTextOutput(JSON.stringify({ result: "success" }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      "result": "error",
+      "error": error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
