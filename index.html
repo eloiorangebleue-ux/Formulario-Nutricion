@@ -1,224 +1,273 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WhatsApp Sender</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; background: #f0f2f5; color: #333; min-height: 100vh; }
-    header { background: #25D366; color: #fff; padding: 1.2rem; text-align: center; font-size: 1.6rem; font-weight: 600; box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
-    nav { display: flex; background: #fff; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
-    nav button { flex: 1; padding: 1rem; border: none; background: #f7f9fa; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.3s, color 0.3s;}
-    nav button.active { background: #25D366; color: #fff;}
-    main { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 2rem 1rem;}
-    .container { background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); width: 100%; max-width: 800px; overflow: hidden; animation: fadeIn 0.5s ease; }
-    section { padding: 2rem; display: none; }
-    section.active { display: block; }
-    h2 { margin-bottom: 1.2rem; font-weight: 600; color: #25D366; letter-spacing: 0.03em;}
-    .field { margin-bottom: 1rem; position: relative;}
-    .field label { display: block; margin-bottom: 0.4rem; font-weight: 500;}
-    .field input[type="text"],
-    .field input[type="tel"],
-    .field input[type="number"],
-    .field select,
-    .field textarea {
-      width: 100%; padding: 0.75rem 1rem; border: 1px solid #ccc;
-      border-radius: 8px; font-size: 1rem;
-      transition: border-color 0.3s, box-shadow 0.3s;}
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus { border-color: #25D366; box-shadow: 0 0 8px rgba(37,211,102,0.3); outline: none;}
-    .actions { display: flex; gap: 0.6rem;}
-    button.primary { background: #25D366; color: #fff; border: none; border-radius: 8px; padding: 0.75rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.3s;}
-    button.primary:hover { background: #1ebe58;}
-    button.secondary { background: #e74c3c; color: #fff; border: none; border-radius: 8px; padding: 0.75rem; cursor: pointer; transition: background 0.3s;}
-    button.secondary:hover { background: #c0392b;}
-    #preview { margin-top: 1rem; padding: 1rem; background: #f7f9fa; border: 1px solid #ddd; border-radius: 8px; white-space: pre-line; font-weight: 500;}
-    .template-item { padding: 1rem; border: 1px solid #eee; border-radius: 8px; margin-bottom: 1rem; position: relative; transition: background 0.2s;}
-    .template-item:hover { background: #f0f9f4;}
-    .template-header { font-weight: 600; margin-bottom: 0.5rem; color: #25D366;}
-    .template-offer { font-size: 0.9rem; margin-bottom: 0.8rem; color: #e67e22;}
-    .template-actions { position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.4rem;}
-    @keyframes fadeIn { from{opacity:0; transform: translateY(20px);} to{opacity:1; transform: translateY(0);} }
-    @media (max-width: 600px) {
-      main { padding: 1rem; }
-      section { padding: 1rem; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario Plan Nutricional – Isaac Nutrición</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <div class="container" role="main" aria-label="Formulario Plan Nutricional Isaac Nutrición">
+    <header>
+      <div class="logo-container">
+        <img src="logo.png" alt="Isaac Nutrición Logo" class="logo" />
+      </div>
+      <p class="subheader">No es una dieta, es tu estilo de vida</p>
+      <h1>🥗 Formulario Plan Nutricional</h1>
+      <p>Complete sus datos para personalizar su plan nutricional.</p>
+    </header>
 
-<header>WhatsApp Sender</header>
+    <form id="nutrition-form"
+      action="https://script.google.com/macros/s/AKfycbyPpO-4xlepTzun1gJhGohGR1F4Ekqf5ta1omBMj7jPLvskY97OFqLTBatS7WVo40G6/exec"
+      method="POST"
+      target="hidden_iframe">
 
-<nav>
-  <button id="tab-send" class="active">Enviar Mensaje</button>
-  <button id="tab-templates">Plantillas</button>
-</nav>
+      <label for="nombre">👤 Nombre *</label>
+      <input type="text" id="nombre" name="nombre" required autocomplete="given-name" />
 
-<main>
-  <div class="container">
-    <!-- Enviar Mensaje -->
-    <section id="section-send" class="active">
-      <h2>Enviar Mensaje</h2>
-      <div class="field">
-        <label for="name">Nombre</label>
-        <input type="text" id="name" placeholder="Tu nombre">
-      </div>
-      <div class="field">
-        <label for="phone">Teléfono</label>
-        <input type="tel" id="phone" placeholder="+34 600 000 000">
-      </div>
-      <div class="field">
-        <label for="height">Estatura (cm)</label>
-        <input type="number" id="height" placeholder="Ejemplo: 174" min="50" max="250">
-      </div>
-      <div class="field">
-        <label for="template-select">Plantilla</label>
-        <select id="template-select"><option value="">-- Selecciona --</option></select>
-      </div>
-      <div class="field">
-        <label for="extra-message">Mensaje Opcional</label>
-        <textarea id="extra-message" rows="3" placeholder="Añade texto adicional"></textarea>
-      </div>
-      <button id="btn-preview" class="primary">Previsualizar</button>
-      <div id="preview">Aquí se mostrará la previsualización del mensaje...</div>
-    </section>
+      <label for="apellido">👥 Apellido *</label>
+      <input type="text" id="apellido" name="apellido" required autocomplete="family-name" />
 
-    <!-- Plantillas -->
-    <section id="section-templates">
-      <h2>Plantillas</h2>
-      <div class="field">
-        <label for="tpl-name">Nombre de Plantilla</label>
-        <input type="text" id="tpl-name" placeholder="Ej: Bienvenida">
+      <label for="email">📧 Email *</label>
+      <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com" autocomplete="email" />
+
+      <label for="telefono">📱 Teléfono *</label>
+      <input type="tel" id="telefono" name="telefono" required placeholder="+34 600 000 000" autocomplete="tel" />
+
+      <label for="edad">🎂 Edad *</label>
+      <input type="number" id="edad" name="edad" required min="1" max="120" />
+
+      <fieldset>
+        <legend>🎯 Objetivo</legend>
+        <div class="options-group">
+          <input type="radio" id="obj_perder" name="objetivo" value="Perder peso" required />
+          <label for="obj_perder" class="option-button">⚖️ Perder peso</label>
+          <input type="radio" id="obj_mantener" name="objetivo" value="Mantener peso" />
+          <label for="obj_mantener" class="option-button">🛡️ Mantener peso</label>
+          <input type="radio" id="obj_ganar" name="objetivo" value="Ganar masa muscular" />
+          <label for="obj_ganar" class="option-button">💪 Ganar músculo</label>
+          <input type="radio" id="obj_salud" name="objetivo" value="Mejorar salud general" />
+          <label for="obj_salud" class="option-button">❤️ Mejorar salud</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>🍽️ Alimentos preferidos</legend>
+        <div class="options-group">
+          <input type="checkbox" id="pollo" name="preferidos" value="Pollo" />
+          <label for="pollo" class="option-button">🍗 Pollo</label>
+          <input type="checkbox" id="pescado" name="preferidos" value="Pescado" />
+          <label for="pescado" class="option-button">🐟 Pescado</label>
+          <input type="checkbox" id="carne_roja" name="preferidos" value="Carne roja" />
+          <label for="carne_roja" class="option-button">🥩 Carne roja</label>
+          <input type="checkbox" id="huevos" name="preferidos" value="Huevos" />
+          <label for="huevos" class="option-button">🥚 Huevos</label>
+          <input type="checkbox" id="legumbres" name="preferidos" value="Legumbres" />
+          <label for="legumbres" class="option-button">🫘 Legumbres</label>
+          <input type="checkbox" id="tofu" name="preferidos" value="Tofu" />
+          <label for="tofu" class="option-button">🍱 Tofu</label>
+          <input type="checkbox" id="quinoa" name="preferidos" value="Quinoa" />
+          <label for="quinoa" class="option-button">🌾 Quinoa</label>
+          <input type="checkbox" id="arroz" name="preferidos" value="Arroz" />
+          <label for="arroz" class="option-button">🍚 Arroz</label>
+          <input type="checkbox" id="pasta" name="preferidos" value="Pasta" />
+          <label for="pasta" class="option-button">🍝 Pasta</label>
+          <input type="checkbox" id="pan_integral" name="preferidos" value="Pan integral" />
+          <label for="pan_integral" class="option-button">🍞 Pan integral</label>
+          <input type="checkbox" id="avena" name="preferidos" value="Avena" />
+          <label for="avena" class="option-button">🥣 Avena</label>
+          <input type="checkbox" id="patatas" name="preferidos" value="Patatas" />
+          <label for="patatas" class="option-button">🥔 Patatas</label>
+
+          <input type="checkbox" id="manzana" name="preferidos" value="Manzana" />
+          <label for="manzana" class="option-button">🍎 Manzana</label>
+          <input type="checkbox" id="platano" name="preferidos" value="Plátano" />
+          <label for="platano" class="option-button">🍌 Plátano</label>
+          <input type="checkbox" id="naranja" name="preferidos" value="Naranja" />
+          <label for="naranja" class="option-button">🍊 Naranja</label>
+          <input type="checkbox" id="fresas" name="preferidos" value="Fresas" />
+          <label for="fresas" class="option-button">🍓 Fresas</label>
+          <input type="checkbox" id="uva" name="preferidos" value="Uva" />
+          <label for="uva" class="option-button">🍇 Uva</label>
+
+          <input type="checkbox" id="brocoli" name="preferidos" value="Brócoli" />
+          <label for="brocoli" class="option-button">🥦 Brócoli</label>
+          <input type="checkbox" id="zanahorias" name="preferidos" value="Zanahorias" />
+          <label for="zanahorias" class="option-button">🥕 Zanahorias</label>
+          <input type="checkbox" id="tomates" name="preferidos" value="Tomates" />
+          <label for="tomates" class="option-button">🍅 Tomates</label>
+          <input type="checkbox" id="pepinos" name="preferidos" value="Pepinos" />
+          <label for="pepinos" class="option-button">🥒 Pepinos</label>
+          <input type="checkbox" id="pimientos" name="preferidos" value="Pimientos" />
+          <label for="pimientos" class="option-button">🌶️ Pimientos</label>
+
+          <input type="checkbox" id="frutos_secos" name="preferidos" value="Frutos secos" />
+          <label for="frutos_secos" class="option-button">🌰 Frutos secos</label>
+          <input type="checkbox" id="aceite" name="preferidos" value="Aceite de oliva" />
+          <label for="aceite" class="option-button">🫒 Aceite</label>
+          <input type="checkbox" id="agua" name="preferidos" value="Agua" />
+          <label for="agua" class="option-button">💧 Agua</label>
+
+          <input type="checkbox" id="chocolate" name="preferidos" value="Chocolate" />
+          <label for="chocolate" class="option-button">🍫 Chocolate</label>
+          <input type="checkbox" id="cafe" name="preferidos" value="Café" />
+          <label for="cafe" class="option-button">☕ Café</label>
+          <input type="checkbox" id="te" name="preferidos" value="Té" />
+          <label for="te" class="option-button">🍵 Té</label>
+          <input type="checkbox" id="yogur" name="preferidos" value="Yogur" />
+          <label for="yogur" class="option-button">🥛 Yogur</label>
+          <input type="checkbox" id="queso" name="preferidos" value="Queso" />
+          <label for="queso" class="option-button">🧀 Queso</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>❌ Alimentos que no me gustan</legend>
+        <div class="options-group">
+          <input type="checkbox" id="ng_pollo" name="noGustan" value="Pollo" />
+          <label for="ng_pollo" class="option-button">🍗 Pollo</label>
+          <input type="checkbox" id="ng_pescado" name="noGustan" value="Pescado" />
+          <label for="ng_pescado" class="option-button">🐟 Pescado</label>
+          <input type="checkbox" id="ng_carne_roja" name="noGustan" value="Carne roja" />
+          <label for="ng_carne_roja" class="option-button">🥩 Carne roja</label>
+          <input type="checkbox" id="ng_huevos" name="noGustan" value="Huevos" />
+          <label for="ng_huevos" class="option-button">🥚 Huevos</label>
+          <input type="checkbox" id="ng_legumbres" name="noGustan" value="Legumbres" />
+          <label for="ng_legumbres" class="option-button">🫘 Legumbres</label>
+          <input type="checkbox" id="ng_tofu" name="noGustan" value="Tofu" />
+          <label for="ng_tofu" class="option-button">🍱 Tofu</label>
+          <input type="checkbox" id="ng_quinoa" name="noGustan" value="Quinoa" />
+          <label for="ng_quinoa" class="option-button">🌾 Quinoa</label>
+          <input type="checkbox" id="ng_arroz" name="noGustan" value="Arroz" />
+          <label for="ng_arroz" class="option-button">🍚 Arroz</label>
+          <input type="checkbox" id="ng_pasta" name="noGustan" value="Pasta" />
+          <label for="ng_pasta" class="option-button">🍝 Pasta</label>
+          <input type="checkbox" id="ng_pan_integral" name="noGustan" value="Pan integral" />
+          <label for="ng_pan_integral" class="option-button">🍞 Pan integral</label>
+          <input type="checkbox" id="ng_avena" name="noGustan" value="Avena" />
+          <label for="ng_avena" class="option-button">🥣 Avena</label>
+          <input type="checkbox" id="ng_patatas" name="noGustan" value="Patatas" />
+          <label for="ng_patatas" class="option-button">🥔 Patatas</label>
+
+          <input type="checkbox" id="ng_manzana" name="noGustan" value="Manzana" />
+          <label for="ng_manzana" class="option-button">🍎 Manzana</label>
+          <input type="checkbox" id="ng_platano" name="noGustan" value="Plátano" />
+          <label for="ng_platano" class="option-button">🍌 Plátano</label>
+          <input type="checkbox" id="ng_naranja" name="noGustan" value="Naranja" />
+          <label for="ng_naranja" class="option-button">🍊 Naranja</label>
+          <input type="checkbox" id="ng_fresas" name="noGustan" value="Fresas" />
+          <label for="ng_fresas" class="option-button">🍓 Fresas</label>
+          <input type="checkbox" id="ng_uva" name="noGustan" value="Uva" />
+          <label for="ng_uva" class="option-button">🍇 Uva</label>
+
+          <input type="checkbox" id="ng_brocoli" name="noGustan" value="Brócoli" />
+          <label for="ng_brocoli" class="option-button">🥦 Brócoli</label>
+          <input type="checkbox" id="ng_zanahorias" name="noGustan" value="Zanahorias" />
+          <label for="ng_zanahorias" class="option-button">🥕 Zanahorias</label>
+          <input type="checkbox" id="ng_tomates" name="noGustan" value="Tomates" />
+          <label for="ng_tomates" class="option-button">🍅 Tomates</label>
+          <input type="checkbox" id="ng_pepinos" name="noGustan" value="Pepinos" />
+          <label for="ng_pepinos" class="option-button">🥒 Pepinos</label>
+          <input type="checkbox" id="ng_pimientos" name="noGustan" value="Pimientos" />
+          <label for="ng_pimientos" class="option-button">🌶️ Pimientos</label>
+
+          <input type="checkbox" id="ng_frutos_secos" name="noGustan" value="Frutos secos" />
+          <label for="ng_frutos_secos" class="option-button">🌰 Frutos secos</label>
+          <input type="checkbox" id="ng_aceite" name="noGustan" value="Aceite de oliva" />
+          <label for="ng_aceite" class="option-button">🫒 Aceite</label>
+          <input type="checkbox" id="ng_agua" name="noGustan" value="Agua" />
+          <label for="ng_agua" class="option-button">💧 Agua</label>
+          <input type="checkbox" id="ng_chocolate" name="noGustan" value="Chocolate" />
+          <label for="ng_chocolate" class="option-button">🍫 Chocolate</label>
+          <input type="checkbox" id="ng_cafe" name="noGustan" value="Café" />
+          <label for="ng_cafe" class="option-button">☕ Café</label>
+          <input type="checkbox" id="ng_te" name="noGustan" value="Té" />
+          <label for="ng_te" class="option-button">🍵 Té</label>
+          <input type="checkbox" id="ng_yogur" name="noGustan" value="Yogur" />
+          <label for="ng_yogur" class="option-button">🥛 Yogur</label>
+          <input type="checkbox" id="ng_queso" name="noGustan" value="Queso" />
+          <label for="ng_queso" class="option-button">🧀 Queso</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>⚠️ Intolerancias y alergias</legend>
+        <div class="options-group">
+          <input type="checkbox" id="int_gluten" name="intolerancias" value="Gluten" />
+          <label for="int_gluten" class="option-button">🌾 Gluten</label>
+          <input type="checkbox" id="int_lactosa" name="intolerancias" value="Lactosa" />
+          <label for="int_lactosa" class="option-button">🥛 Lactosa</label>
+          <input type="checkbox" id="int_fructosa" name="intolerancias" value="Fructosa" />
+          <label for="int_fructosa" class="option-button">🍎 Fructosa</label>
+          <input type="checkbox" id="alg_huevos" name="alergias" value="Huevos" />
+          <label for="alg_huevos" class="option-button">🥚 Huevos</label>
+          <input type="checkbox" id="alg_frutos_secos" name="alergias" value="Frutos secos" />
+          <label for="alg_frutos_secos" class="option-button">🌰 Frutos secos</label>
+          <input type="checkbox" id="alg_legumbres" name="alergias" value="Legumbres" />
+          <label for="alg_legumbres" class="option-button">🫘 Legumbres</label>
+          <input type="checkbox" id="otros_int_alg" name="otrosIntolerAl" value="Otros" />
+          <label for="otros_int_alg" class="option-button">❓ Otros</label>
+        </div>
+        <input type="text" id="otros-intoler-alerg" name="otrosIntolerAl" placeholder="Especifique otros" />
+      </fieldset>
+
+      <label for="restricciones">📝 Observaciones</label>
+      <textarea id="restricciones" name="restricciones" rows="3" placeholder="Por ejemplo: vegetariano, sin azúcar..."></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+    <div id="success-message" class="success-popup hidden">
+      <div class="success-content">
+        <div class="success-icon">✅</div>
+        <h3>¡Formulario enviado correctamente!</h3>
+        <p>Gracias por completar el cuestionario nutricional. En breve te enviaremos tu plan nutricional personalizado.</p>
+        <button id="close-success" class="success-button">Cerrar</button>
       </div>
-      <div class="field">
-        <label for="tpl-text">Texto de Plantilla</label>
-        <textarea id="tpl-text" rows="3" placeholder="Escribe el cuerpo del mensaje"></textarea>
-      </div>
-      <div class="field">
-        <label for="tpl-offer">Oferta Relacionada</label>
-        <input type="text" id="tpl-offer" placeholder="Ej: 20% descuento">
-      </div>
-      <button id="btn-add-template" class="primary">Añadir Plantilla</button>
-      <div id="templates-list"></div>
-    </section>
+    </div>
   </div>
-</main>
 
-<script>
-  const tabSend = document.getElementById('tab-send');
-  const tabTemplates = document.getElementById('tab-templates');
-  const sectionSend = document.getElementById('section-send');
-  const sectionTemplates = document.getElementById('section-templates');
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('nutrition-form');
+      const successMessage = document.getElementById('success-message');
+      const closeButton = document.getElementById('close-success');
 
-  tabSend.onclick = () => {
-    tabSend.classList.add('active'); tabTemplates.classList.remove('active');
-    sectionSend.classList.add('active'); sectionTemplates.classList.remove('active');
-  };
-  tabTemplates.onclick = () => {
-    tabTemplates.classList.add('active'); tabSend.classList.remove('active');
-    sectionTemplates.classList.add('active'); sectionSend.classList.remove('active');
-    renderTemplates();
-  };
-
-  let templates = JSON.parse(localStorage.getItem('wa_templates') || '[]');
-
-  const tplName = document.getElementById('tpl-name');
-  const tplText = document.getElementById('tpl-text');
-  const tplOffer = document.getElementById('tpl-offer');
-  const btnAddTpl = document.getElementById('btn-add-template');
-  const tplList = document.getElementById('templates-list');
-  const tplSelect = document.getElementById('template-select');
-  const nameEl = document.getElementById('name');
-  const phoneEl = document.getElementById('phone');
-  const heightEl = document.getElementById('height');
-  const extraMsgEl = document.getElementById('extra-message');
-  const btnPreview = document.getElementById('btn-preview');
-  const previewEl = document.getElementById('preview');
-
-  function saveTemplates() {
-    localStorage.setItem('wa_templates', JSON.stringify(templates));
-  }
-
-  function renderTemplates() {
-    tplList.innerHTML = '';
-    templates.forEach((tpl, i) => {
-      const div = document.createElement('div');
-      div.className = 'template-item';
-      div.innerHTML = `
-        <div class="template-header">${tpl.name}</div>
-        <div class="template-offer">${tpl.offer || ''}</div>
-        <div>${tpl.text}</div>
-        <div class="template-actions">
-          <button class="edit">✏️</button>
-          <button class="delete">🗑️</button>
-        </div>`;
-      div.querySelector('.edit').onclick = () => {
-        const newName = prompt('Nombre:', tpl.name);
-        const newOffer = prompt('Oferta:', tpl.offer);
-        const newText = prompt('Texto:', tpl.text);
-        if (newName && newText) {
-          templates[i] = { name: newName, offer: newOffer, text: newText };
-          saveTemplates();
-          renderTemplates();
-          renderSelect();
+      form.addEventListener('submit', function (e) {
+        const requiredFields = ['nombre', 'apellido', 'email', 'telefono', 'edad', 'objetivo'];
+        for (let field of requiredFields) {
+          if (!form[field].value.trim()) {
+            alert('Por favor complete todos los campos obligatorios (*)');
+            e.preventDefault();
+            return;
+          }
         }
-      };
-      div.querySelector('.delete').onclick = () => {
-        if (confirm('Eliminar plantilla?')) {
-          templates.splice(i,1);
-          saveTemplates();
-          renderTemplates();
-          renderSelect();
+
+        setTimeout(function () {
+          successMessage.classList.remove('hidden');
+          successMessage.classList.add('visible');
+          form.reset();
+        }, 500);
+      });
+
+      closeButton.addEventListener('click', function () {
+        successMessage.classList.remove('visible');
+        successMessage.classList.add('hidden');
+      });
+
+      successMessage.addEventListener('click', function (e) {
+        if (e.target === successMessage) {
+          successMessage.classList.remove('visible');
+          successMessage.classList.add('hidden');
         }
-      };
-      tplList.appendChild(div);
+      });
     });
-  }
-
-  function renderSelect() {
-    tplSelect.innerHTML = '<option value="">-- Selecciona --</option>';
-    templates.forEach((tpl, i) => {
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = tpl.name;
-      tplSelect.appendChild(opt);
-    });
-  }
-
-  btnAddTpl.onclick = () => {
-    const name = tplName.value.trim();
-    const text = tplText.value.trim();
-    const offer = tplOffer.value.trim();
-    if (name && text) {
-      templates.push({ name, text, offer });
-      saveTemplates();
-      tplName.value=''; tplText.value=''; tplOffer.value='';
-      renderTemplates();
-      renderSelect();
-    } else {
-      alert('Nombre y texto son obligatorios');
-    }
-  };
-
-  btnPreview.onclick = () => {
-    const idx = tplSelect.value;
-    const extra = extraMsgEl.value.trim();
-    const name = nameEl.value.trim();
-    const phone = phoneEl.value.trim();
-    const height = heightEl.value.trim();
-    if (!name || !phone) return alert('Nombre y teléfono son obligatorios');
-    let msg = idx!=='' ? templates[idx].text : '';
-    if (extra) msg += '\n\n' + extra;
-    previewEl.textContent = 
-      `To: ${phone}\nNombre: ${name}\nEstatura: ${height ? height+' cm' : '-'}\n\n${msg}`;
-  };
-
-  renderTemplates();
-  renderSelect();
-</script>
-
+  </script>
 </body>
+
 </html>
